@@ -471,10 +471,12 @@ if [ -f version ]; then
   ui_printfile version;
   ui_print " ";
 fi;
-ui_print "/-------------------------\"
-ui_print "/------ThunderStorm-------\"
-ui_print "/----------Kernel---------\"
-ui_print "/------By Anupam Roy------\"
+ui_print "/---------\___________/----------\";
+ui_print "/---------|ThunderStorm|---------\";
+ui_print "/---------\___________/----------\";
+ui_print "/------------|Kernel|------------\";
+ui_print "/---------|By Anupam Roy|--------\";
+ui_print "/---------###############--------\";
 
 
 
