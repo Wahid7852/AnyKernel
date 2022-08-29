@@ -15,6 +15,10 @@ device.name2=rmx2151
 device.name3=rmx2161
 device.name4=RMX2161
 device.name5=RMX2001
+device.name6=RM6785
+device.name7=rm6785
+device.name8=wasabi 
+device.name9=RMX2002
 supported.versions=
 supported.patchlevels=
 '; } # end properties
