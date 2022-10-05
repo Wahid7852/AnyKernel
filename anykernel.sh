@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=QKR by Abdul7852
+kernel.string=Nova Kernel by Abdul7852
 do.devicecheck=1
 do.modules=0
 do.systemless=1
@@ -45,11 +45,11 @@ if [ -d $ramdisk/.backup ]; then
 	mv /tmp/anykernel/overlay.d $ramdisk/overlay.d
 	chmod -R 750 $ramdisk/overlay.d/*
 	chown -R root:root $ramdisk/overlay.d/*
-	chmod -R 755 $ramdisk/overlay.d/sbin/init.qkr.sh
-	chown -R root:root $ramdisk/overlay.d/sbin/init.qkr.sh
+	chmod -R 755 $ramdisk/overlay.d/sbin/init.nova.sh
+	chown -R root:root $ramdisk/overlay.d/sbin/init.nova.sh
 fi;
 
-. overlay.d/sbin/init.qkr.sh;
+. overlay.d/sbin/init.nova.sh;
 
 ui_print " » Configured";
 
