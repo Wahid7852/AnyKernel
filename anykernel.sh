@@ -19,6 +19,16 @@ device.name6=RM6785
 device.name7=rm6785
 device.name8=wasabi 
 device.name9=RMX2002
+device.name10=rmx2001
+device.name11=rmx2001L1
+device.name12=RMX2001L1
+device.name13=rmx2002
+device.name14=rmx2002L1
+device.name15=RMX2002L1
+device.name16=RMX2003
+device.name17=IN2023
+device.name18=RMX3031
+device.name19=GM1917
 supported.versions=
 supported.patchlevels=
 '; } # end properties
