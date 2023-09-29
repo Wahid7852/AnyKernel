@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=Welcome To The Azrael ...
+kernel.string=Welcome To The AbzRaider Kernel ...
 do.devicecheck=0
 do.modules=0
 do.systemless=1
@@ -13,12 +13,12 @@ do.cleanuponabort=0
 device.name1=pissarro
 device.name2=pissarroin
 device.name3=pissarroinpro
-supported.versions=11.0-12.0
+
 '; } # end properties
 
 # shell variables
 block=/dev/block/by-name/boot;
-is_slot_device=0;
+is_slot_device=1;
 ramdisk_compression=auto;
 patch_vbmeta_flag=auto;
 
