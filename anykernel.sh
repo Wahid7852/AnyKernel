@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=NOVA by Abdul7852
+kernel.string=NoVA by Abdul7852
 do.devicecheck=1
 do.modules=0
 do.systemless=1
@@ -16,30 +16,52 @@ supported.versions=
 supported.patchlevels=
 '; } # end properties
 
-# shell variables
+isTimRom() {
+  build_prop="/system/build.prop"
+  version_prop="ro.crdroid.build.version"
+
+  if grep -q "$version_prop" "$build_prop" && grep -q "timjosten" "$build_prop"; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+# Initialize block
 block=/dev/block/bootdevice/by-name/boot;
-is_slot_device=0;
-ramdisk_compression=auto;
-no_block_display=true;
 
-## AnyKernel methods (DO NOT CHANGE)
-# import patching functions/variables - see for reference
-. tools/ak3-core.sh;
+if isTimRom; then
+    block=boot;
+    is_slot_device=auto;
+    ramdisk_compression=none;
 
-## begin vendor changes
-mount -o rw,remount -t auto /vendor >/dev/null;
+    . tools/ak3-core.sh;
 
-# Make a backup of init.target.rc
-restore_file /vendor/etc/init/hw/init.target.rc;
+    ui_print " » Custom ROM recognition: Tim's Signature ";
+    ui_print " » Initiating vibration fix deployment "
+    ui_print " » Executing NoVA flash....";
 
-# Clean up other kernels' ramdisk overlay files
-rm -rf $ramdisk/overlay;
-rm -rf $ramdisk/overlay.d;
+    split_boot;
+    patch_cmdline initcall_blacklist initcall_blacklist=
+    flash_boot;
 
-ui_print " » Flashing....";
+else
 
-## AnyKernel install
-dump_boot;
+    is_slot_device=0;
+    ramdisk_compression=auto;
+    no_block_display=true;
 
-write_boot;
-## end install
+    . tools/ak3-core.sh;
+
+    mount -o rw,remount -t auto /vendor >/dev/null;
+    restore_file /vendor/etc/init/hw/init.target.rc;
+
+    rm -rf $ramdisk/overlay;
+    rm -rf $ramdisk/overlay.d;
+
+    ui_print " » Executing NoVA flash....";
+
+    dump_boot;
+    write_boot;
+
+fi
