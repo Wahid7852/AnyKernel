@@ -39,3 +39,6 @@ ui_print " » Flashing....";
 
 ## AnyKernel boot install
 dump_boot;
+
+write_boot;
+## end boot install
