@@ -27,6 +27,17 @@ isTimRom() {
   fi
 }
 
+isDerp() {
+  build_prop="/system/build.prop"
+  version_prop="ro.derp.fingerprint"
+
+  if grep -q "$version_prop" "$build_prop" && grep -q "DerpFest" "$build_prop"; then
+    return 0
+  else
+    return 1
+  fi
+}
+
 # Initialize block
 block=/dev/block/bootdevice/by-name/boot;
 
@@ -44,6 +55,27 @@ if isTimRom; then
     split_boot;
     patch_cmdline initcall_blacklist initcall_blacklist=
     flash_boot;
+
+elif isDerp; then
+
+    block=/dev/block/by-name/boot;
+    is_slot_device=0;
+    ramdisk_compression=auto;
+    no_block_display=true;
+
+    . tools/ak3-core.sh;
+
+    mount -o rw,remount -t auto /vendor >/dev/null;
+    restore_file /vendor/etc/init/hw/init.target.rc;
+
+    rm -rf $ramdisk/overlay;
+    rm -rf $ramdisk/overlay.d;
+
+    ui_print " » Custom ROM recognition: DerpFest's detected ";
+    ui_print " » Executing NoVA flash....";
+
+    dump_boot;
+    write_boot;
 
 else
 
